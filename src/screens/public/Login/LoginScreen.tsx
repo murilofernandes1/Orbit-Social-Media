@@ -3,9 +3,16 @@ import { useNavigation, NavigationProp } from "@react-navigation/native";
 import Button from "../../../components/Button/Button";
 import Orbit from "../../../components/Orbit/Orbit";
 import { styles } from "./styles";
+import { useAuth } from "../../../hooks/useAuth";
 
 export default function LoginScreen() {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const { login } = useAuth();
+  const navigation = useNavigation<NavigationProp<any>>();
+
+  function handleLogin() {
+    const token = "12345";
+    login(token);
+  }
   return (
     <View style={styles.container}>
       <Orbit />
@@ -25,7 +32,7 @@ export default function LoginScreen() {
             placeholder="Digite sua senha..."
           ></TextInput>
         </View>
-        <Button title="Entrar" />
+        <Button onPress={() => handleLogin} title="Entrar" />
         <Text style={styles.register}>
           Ainda não tem uma conta?{" "}
           <Text
