@@ -9,7 +9,7 @@ export default function LoginScreen() {
   const { login } = useAuth();
   const navigation = useNavigation<NavigationProp<any>>();
 
-  function handleLogin() {
+  async function handleLogin() {
     const token = "12345";
     login(token);
   }
@@ -32,7 +32,7 @@ export default function LoginScreen() {
             placeholder="Digite sua senha..."
           ></TextInput>
         </View>
-        <Button onPress={() => handleLogin} title="Entrar" />
+        <Button onPress={handleLogin} title="Entrar" />
         <Text style={styles.register}>
           Ainda não tem uma conta?{" "}
           <Text
