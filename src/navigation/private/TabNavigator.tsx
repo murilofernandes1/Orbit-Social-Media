@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "../../screens/private/HomeScreen";
+import HomeScreen from "../../screens/private/Home/HomeScreen";
 import { House } from "phosphor-react-native";
 
 const Tab = createBottomTabNavigator();

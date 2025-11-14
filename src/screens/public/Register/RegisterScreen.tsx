@@ -20,16 +20,19 @@ export default function RegisterScreen() {
           <Text style={styles.label}>Nome</Text>
           <TextInput
             style={styles.input}
+            placeholderTextColor="gray"
             placeholder="Digite seu nome..."
           ></TextInput>
           <Text style={styles.label}>Email</Text>
           <TextInput
             style={styles.input}
+            placeholderTextColor="gray"
             placeholder="Digite seu email..."
           ></TextInput>
           <Text style={styles.label}>Telefone</Text>
           <TextInput
             style={styles.input}
+            placeholderTextColor="gray"
             placeholder="Digite seu telefone..."
           ></TextInput>
         </View>
@@ -37,6 +40,7 @@ export default function RegisterScreen() {
           <Text style={styles.label}>Senha</Text>
           <TextInput
             style={styles.input}
+            placeholderTextColor="gray"
             placeholder="Digite sua senha..."
           ></TextInput>
         </View>

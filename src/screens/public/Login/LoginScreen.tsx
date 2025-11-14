@@ -22,6 +22,7 @@ export default function LoginScreen() {
           <Text style={styles.label}>Email</Text>
           <TextInput
             style={styles.input}
+            placeholderTextColor="gray"
             placeholder="Digite seu email..."
           ></TextInput>
         </View>
@@ -29,6 +30,7 @@ export default function LoginScreen() {
           <Text style={styles.label}>Senha</Text>
           <TextInput
             style={styles.input}
+            placeholderTextColor="gray"
             placeholder="Digite sua senha..."
           ></TextInput>
         </View>
