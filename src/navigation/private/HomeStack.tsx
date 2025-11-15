@@ -1,9 +1,9 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../../screens/private/Home/HomeScreen";
 import FollowingScreen from "../../screens/private/Following/FollowingScreen";
 import PostScreen from "../../screens/private/Post/PostScreen";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function HomeStack() {
   return (

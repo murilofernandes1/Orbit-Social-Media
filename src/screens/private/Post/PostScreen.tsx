@@ -14,7 +14,9 @@ export default function PostScreen() {
   return (
     <>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.goBack}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("FollowingScreen")}
+        >
           <ArrowLeft style={styles.back} size={32} color="#058C42" />
         </TouchableOpacity>
 
