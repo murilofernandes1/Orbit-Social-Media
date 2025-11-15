@@ -1,12 +1,23 @@
-import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { Image, Paperclip } from "phosphor-react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
+import { Image, Paperclip, ArrowLeft } from "phosphor-react-native";
 import styles from "./styles";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
 
 export default function PostScreen() {
+  const navigation = useNavigation<NavigationProp<any>>();
   return (
     <>
       <View style={styles.container}>
+        <TouchableOpacity onPress={() => navigation.goBack}>
+          <ArrowLeft style={styles.back} size={32} color="#058C42" />
+        </TouchableOpacity>
+
         <View style={styles.postContainer}>
           <View style={styles.postInfo}>
             <View style={styles.userPfp}></View>

@@ -2,11 +2,13 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    marginTop: 50,
+    flex: 1,
+    backgroundColor: "#08090A",
+    paddingHorizontal: 24,
   },
 
   postContainer: {
+    top: 200,
     justifyContent: "center",
     alignItems: "flex-start",
     flexDirection: "column",
@@ -64,6 +66,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#08090A",
     fontWeight: "bold",
+  },
+  back: {
+    top: 80,
   },
 });
 
