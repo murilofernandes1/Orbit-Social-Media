@@ -1,22 +1,20 @@
-import { Text, View } from "react-native";
-import styles from "./styles";
-import Post from "../../../components/Post/Post";
+import { Text, TouchableOpacity, View } from "react-native";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
+import styles from "./styles";
+import Header from "../../../components/Header/Header";
+import TabNavigator from "../../../navigation/private/TabNavigator";
 
-export default function Home() {
+export default function HomeScreen() {
   const navigation = useNavigation<NavigationProp<any>>();
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Para mim</Text>
-        <Text
-          onPress={() => navigation.navigate("FollowingScreen")}
-          style={styles.headerText}
-        >
-          Seguindo
-        </Text>
+    <>
+      <Header />
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.orbit}>
+          <View style={styles.majorOrbit}></View>
+          <View style={styles.minorOrbit}></View>
+        </TouchableOpacity>
       </View>
-      <Post />
-    </View>
+    </>
   );
 }

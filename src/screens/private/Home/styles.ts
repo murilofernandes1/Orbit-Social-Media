@@ -6,19 +6,28 @@ const styles = StyleSheet.create({
     backgroundColor: "#08090A",
     paddingHorizontal: 24,
   },
-  header: {
-    display: "flex",
-    flexDirection: "row",
-    gap: 20,
-    marginTop: 50,
-    justifyContent: "center",
+  orbit: {
+    position: "absolute",
+    bottom: 0,
+    left: 250,
+    right: 0,
+    alignItems: "center",
   },
-  headerText: {
-    color: "#058C42",
-    gap: 10,
-    padding: 10,
-    borderBottomWidth: 2,
-    borderBottomColor: "#058C42",
+  majorOrbit: {
+    backgroundColor: "#04471C",
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    alignSelf: "center",
+    left: 25,
+  },
+  minorOrbit: {
+    backgroundColor: "#058C42",
+    width: 20,
+    height: 20,
+    borderRadius: 25,
+    bottom: 65,
+    left: 55,
   },
 });
 export default styles;

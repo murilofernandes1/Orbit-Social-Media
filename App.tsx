@@ -8,7 +8,13 @@ function Routes() {
   const { isLoggedIn } = useAuth();
   return (
     <NavigationContainer>
-      {isLoggedIn ? <TabNavigator /> : <PublicStackNavigator />}
+      {isLoggedIn ? (
+        <>
+          <TabNavigator />
+        </>
+      ) : (
+        <PublicStackNavigator />
+      )}
     </NavigationContainer>
   );
 }
