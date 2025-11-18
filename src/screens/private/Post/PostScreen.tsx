@@ -1,29 +1,20 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import Button from "../../../components/Button/Button";
 import { Image, Paperclip, ArrowLeft } from "phosphor-react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../../navigation/private/StackNavigator";
-
-type PostScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  "PostScreen"
->;
 
 export default function PostScreen() {
-  const navigation = useNavigation<PostScreenNavigationProp>();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
-  const handleGoBack = () => {
-    if (navigation.canGoBack()) {
-      navigation.goBack();
-    }
-  };
   return (
     <>
       <View style={styles.container}>
-        <TouchableOpacity onPress={handleGoBack}>
-          <ArrowLeft style={styles.back} size={32} color="#058C42" />
-        </TouchableOpacity>
+        <Button
+          onPress={() => navigation.navigate("HomeScreen")}
+          title="Voltar"
+        />
 
         <View style={styles.postContainer}>
           <View style={styles.postInfo}>

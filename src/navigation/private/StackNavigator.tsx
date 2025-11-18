@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import TabNavigator from "./TabNavigator";
 import FollowingScreen from "../../screens/private/Following/FollowingScreen";
 import PostScreen from "../../screens/private/Post/PostScreen";
+import HomeScreen from "../../screens/private/Home/HomeScreen";
 
 export type RootStackParamList = {
-  TabNavigator: undefined;
+  HomeScreen: undefined;
   PostScreen: undefined;
   FollowingScreen: undefined;
 };
@@ -12,9 +12,11 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function StackNavigator() {
+  console.log("StackNavigator renderizou");
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false, animation: "none" }}>
-      <Stack.Screen name="TabNavigator" component={TabNavigator} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="PostScreen" component={PostScreen} />
       <Stack.Screen name="FollowingScreen" component={FollowingScreen} />
     </Stack.Navigator>
