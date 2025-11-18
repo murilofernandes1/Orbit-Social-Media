@@ -5,17 +5,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     gap: 24,
-    backgroundColor: "#08090A",
+    backgroundColor: "#04471C",
     paddingTop: 55,
     paddingBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#04471C",
+
+    width: "100%",
   },
 
   headerText: {
     fontSize: 18,
     fontWeight: "600",
-    color: "#E6E6E6",
+    color: "#DCE0D9",
     paddingBottom: 8,
   },
 
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
 
   inactiveTab: {
-    opacity: 0.5,
+    opacity: 0.9,
   },
 });
 

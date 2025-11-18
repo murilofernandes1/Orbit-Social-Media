@@ -1,5 +1,5 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import Button from "../../../components/Button/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Image, Paperclip, ArrowLeft } from "phosphor-react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
@@ -11,11 +11,12 @@ export default function PostScreen() {
   return (
     <>
       <View style={styles.container}>
-        <Button
+        <TouchableOpacity
+          style={{ top: 50 }}
           onPress={() => navigation.navigate("HomeScreen")}
-          title="Voltar"
-        />
-
+        >
+          <ArrowLeft size={25} color="#058C42" weight="bold" />
+        </TouchableOpacity>
         <View style={styles.postContainer}>
           <View style={styles.postInfo}>
             <View style={styles.userPfp}></View>

@@ -3,13 +3,14 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#08090A",
+    backgroundColor: "#DCE0D9",
     paddingHorizontal: 24,
   },
   orbit: {
     position: "absolute",
     bottom: 40,
-    alignSelf: "center",
+    right: 55,
+    alignSelf: "flex-end",
   },
   majorOrbit: {
     backgroundColor: "#04471C",
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 25,
     bottom: 65,
-    left: 55,
+    left: 70,
   },
 });
 export default styles;

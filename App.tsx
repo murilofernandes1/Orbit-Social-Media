@@ -3,12 +3,13 @@ import StackNavigator from "./src/navigation/private/StackNavigator";
 import PublicStackNavigator from "./src/navigation/public/PublicStackNavigator";
 import { AuthProvider } from "./src/providers/AuthProvider";
 import { useAuth } from "./src/hooks/useAuth";
+import TabNavigator from "./src/navigation/private/TabNavigator";
 
 function Routes() {
   const { isLoggedIn } = useAuth();
   return (
     <NavigationContainer>
-      {isLoggedIn ? <StackNavigator /> : <PublicStackNavigator />}
+      {isLoggedIn ? <TabNavigator /> : <PublicStackNavigator />}
     </NavigationContainer>
   );
 }

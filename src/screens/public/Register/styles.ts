@@ -6,7 +6,6 @@ const small = height < 700;
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: "#08090A",
-
     alignItems: "center",
     paddingVertical: 100,
   },
