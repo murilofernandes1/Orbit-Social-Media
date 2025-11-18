@@ -1,9 +1,16 @@
+import React from "react";
 import { TouchableOpacity, View } from "react-native";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 import Header from "../../../components/Header/Header";
+import { RootStackParamList } from "../../../navigation/private/StackNavigator";
+
+type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export default function HomeScreen() {
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+
   return (
     <>
       <Header />

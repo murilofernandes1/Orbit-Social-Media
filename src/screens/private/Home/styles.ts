@@ -8,10 +8,8 @@ const styles = StyleSheet.create({
   },
   orbit: {
     position: "absolute",
-    bottom: 0,
-    left: 250,
-    right: 0,
-    alignItems: "center",
+    bottom: 40,
+    alignSelf: "center",
   },
   majorOrbit: {
     backgroundColor: "#04471C",
