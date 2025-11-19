@@ -1,5 +1,4 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Image, Paperclip, ArrowLeft } from "phosphor-react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
@@ -12,27 +11,30 @@ export default function PostScreen() {
     <>
       <View style={styles.container}>
         <TouchableOpacity
-          style={{ top: 50 }}
+          style={styles.backButton}
           onPress={() => navigation.navigate("HomeScreen")}
         >
-          <ArrowLeft size={25} color="#058C42" weight="bold" />
+          <ArrowLeft size={28} color="#058C42" weight="bold" />
         </TouchableOpacity>
+
         <View style={styles.postContainer}>
           <View style={styles.postInfo}>
-            <View style={styles.userPfp}></View>
+            <View style={styles.userPfp} />
+
             <TextInput
               style={styles.postInput}
-              placeholderTextColor="gray"
+              placeholderTextColor="#6B6B6B"
               placeholder="No que você está pensando?"
-              multiline={true}
-              numberOfLines={4}
+              multiline
             />
           </View>
+
           <View style={styles.actionsContainer}>
             <View style={styles.icons}>
-              <Image size={25} color="#058C42" weight="bold" />
-              <Paperclip size={25} color="#058C42" weight="bold" />
+              <Image size={26} color="#058C42" weight="bold" />
+              <Paperclip size={26} color="#058C42" weight="bold" />
             </View>
+
             <TouchableOpacity style={styles.postButton}>
               <Text style={styles.buttonText}>Postar</Text>
             </TouchableOpacity>

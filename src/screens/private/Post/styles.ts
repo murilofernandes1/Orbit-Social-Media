@@ -5,70 +5,68 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#DCE0D9",
     paddingHorizontal: 24,
+    paddingTop: 40,
+  },
+
+  backButton: {
+    marginBottom: 20,
+    alignSelf: "flex-start",
   },
 
   postContainer: {
-    top: 200,
-    justifyContent: "center",
-    alignItems: "flex-start",
-    flexDirection: "column",
-    borderWidth: 0.2,
-    borderColor: "#058C42",
-    width: "100%",
-    borderRadius: 10,
-    padding: 10,
-    gap: 1,
+    backgroundColor: "#FFFFFF",
+    padding: 20,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "#B8C0B4",
+    gap: 20,
+    marginTop: 100,
   },
 
   postInfo: {
     flexDirection: "row",
-    alignItems: "center",
-    width: "100%",
-    padding: 15,
+    alignItems: "flex-start",
+    gap: 12,
   },
 
   userPfp: {
-    backgroundColor: "#058C42",
-    borderRadius: 25,
-    width: 50,
-    height: 50,
-    marginRight: 10,
+    width: 45,
+    height: 45,
+    backgroundColor: "#DCE0D9",
+    borderRadius: 50,
   },
 
   postInput: {
     flex: 1,
-    minHeight: 60,
-    paddingHorizontal: 10,
-    color: "white",
+    minHeight: 100,
+    fontSize: 16,
+    color: "#1A1A1A",
+    paddingTop: 10,
+    textAlignVertical: "top",
   },
 
   actionsContainer: {
-    borderTopColor: "#058C42",
-    borderTopWidth: 0.2,
-    padding: 15,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    width: "100%",
   },
+
   icons: {
     flexDirection: "row",
     gap: 20,
   },
+
   postButton: {
-    borderRadius: 7,
-    backgroundColor: "#058C42",
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    backgroundColor: "#04471C",
+    paddingVertical: 10,
+    paddingHorizontal: 22,
+    borderRadius: 10,
   },
 
   buttonText: {
+    color: "#FFFFFF",
     fontSize: 15,
-    color: "#08090A",
-    fontWeight: "bold",
-  },
-  back: {
-    top: 80,
+    fontWeight: "700",
   },
 });
 

@@ -28,7 +28,7 @@ export default function TabNavigator() {
         options={{
           tabBarIcon: ({ focused }) => (
             <House
-              size={40}
+              size={35}
               color={focused ? "#058C42" : "#6A6A6A"}
               weight={focused ? "fill" : "regular"}
             />
@@ -41,7 +41,7 @@ export default function TabNavigator() {
         options={{
           tabBarIcon: ({ focused }) => (
             <MagnifyingGlassIcon
-              size={40}
+              size={35}
               color={focused ? "#058C42" : "#6A6A6A"}
               weight={focused ? "fill" : "regular"}
             />
@@ -55,7 +55,7 @@ export default function TabNavigator() {
         options={{
           tabBarIcon: ({ focused }) => (
             <User
-              size={40}
+              size={35}
               color={focused ? "#058C42" : "#6A6A6A"}
               weight={focused ? "fill" : "regular"}
             />

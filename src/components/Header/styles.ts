@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 18,
     fontWeight: "600",
-    color: "#6A6A6A",
+    color: "#DCE0D9",
     paddingBottom: 8,
   },
 
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
 
   inactiveTab: {
-    opacity: 0.9,
+    opacity: 0.8,
   },
 });
 
