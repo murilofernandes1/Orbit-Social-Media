@@ -63,4 +63,9 @@ export const styles = StyleSheet.create({
     color: "#058C42",
     fontWeight: "700",
   },
+  error: {
+    color: "red",
+    fontSize: 15,
+    alignSelf: "center",
+  },
 });

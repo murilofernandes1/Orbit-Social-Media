@@ -1,7 +1,9 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import styles from "./styles";
+import { useAuth } from "../../../hooks/useAuth";
 
 export default function ProfileScreen() {
+  const { logout } = useAuth();
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.userHeader}>
@@ -30,6 +32,9 @@ export default function ProfileScreen() {
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>Compartilhar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => logout()} style={styles.button}>
+            <Text style={styles.buttonText}>Sair</Text>
           </TouchableOpacity>
         </View>
       </View>
