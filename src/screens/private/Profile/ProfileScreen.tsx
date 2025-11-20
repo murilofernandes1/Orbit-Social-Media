@@ -1,14 +1,38 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { useAuth } from "../../../hooks/useAuth";
+import api from "../../../services/api";
+import { useState, useEffect } from "react";
 
+interface UserProps {
+  user: object | null;
+  name: string | null;
+  id: string;
+  posts: PostProps[] | null;
+}
+interface PostProps {
+  id: string;
+}
 export default function ProfileScreen() {
+  const [user, setUser] = useState<UserProps>();
+  useEffect(() => {
+    async function loadUser() {
+      try {
+        const response = await api.get("/me");
+        console.log(response.data);
+        setUser(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    loadUser();
+  }, []);
   const { logout } = useAuth();
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.userHeader}>
         <View style={styles.userPic} />
-        <Text style={styles.username}>@Murilo</Text>
+        <Text style={styles.username}>@{user?.name}</Text>
         <Text style={styles.bio}>Biografia insana</Text>
 
         <View style={styles.statsContainer}>
@@ -40,24 +64,16 @@ export default function ProfileScreen() {
       </View>
 
       <View style={styles.feed}>
-        {[1, 2, 3, 4].map((i) => (
-          <View key={i} style={styles.postCard}>
-            <View style={styles.postHeader}>
-              <Text style={styles.postUser}>@Usuário</Text>
-              <Text style={styles.postTime}>2h atrás</Text>
+        {user?.posts?.length ? (
+          user.posts.map((post) => (
+            <View key={post.id} style={styles.postCard}>
+              <Text style={styles.postUser}>@{user.name}</Text>
+              <Text style={styles.postText}>Post {post.id}</Text>
             </View>
-
-            <Text style={styles.postText}>
-              Aqui é um placeholder de texto. Tá funfando
-            </Text>
-
-            <View style={styles.postActions}>
-              <Text style={styles.postActionText}>Curtir</Text>
-              <Text style={styles.postActionText}>Comentar</Text>
-              <Text style={styles.postActionText}>Compartilhar</Text>
-            </View>
-          </View>
-        ))}
+          ))
+        ) : (
+          <Text style={styles.noPost}>Você não tem nenhum post ainda.</Text>
+        )}
       </View>
     </ScrollView>
   );

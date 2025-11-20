@@ -150,6 +150,12 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#04471C",
   },
+  noPost: {
+    color: "#04471C",
+    marginTop: 100,
+    alignSelf: "center",
+    fontWeight: "600",
+  },
 });
 
 export default styles;
