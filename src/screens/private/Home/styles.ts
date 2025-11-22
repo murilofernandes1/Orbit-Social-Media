@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#DCE0D9",
     paddingHorizontal: 24,
     paddingTop: 20,
@@ -62,6 +61,14 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#222",
     marginBottom: 12,
+  },
+
+  postImage: {
+    width: "100%",
+    height: 400,
+    borderRadius: 10,
+    marginBottom: 30,
+    marginTop: 15,
   },
 
   postActions: {

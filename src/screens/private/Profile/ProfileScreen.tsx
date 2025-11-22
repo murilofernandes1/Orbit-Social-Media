@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
 import styles from "./styles";
 import { useAuth } from "../../../hooks/useAuth";
 import api from "../../../services/api";
@@ -12,6 +12,9 @@ interface UserProps {
 }
 interface PostProps {
   id: string;
+  body: string;
+  image: string | null;
+  createdAt: string;
 }
 export default function ProfileScreen() {
   const [user, setUser] = useState<UserProps>();
@@ -27,6 +30,24 @@ export default function ProfileScreen() {
     }
     loadUser();
   }, []);
+
+  function timeAgo(dateString: string) {
+    const now = Date.now();
+    const postTime = new Date(dateString).getTime();
+    const diffMs = now - postTime;
+
+    const seconds = Math.floor(diffMs / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+
+    if (seconds < 60) return "agora mesmo";
+    if (minutes < 60) return `há ${minutes} minuto${minutes > 1 ? "s" : ""}`;
+    if (hours < 24) return `há ${hours} hora${hours > 1 ? "s" : ""}`;
+    if (days === 1) return "ontem";
+    return `há ${days} dias`;
+  }
+
   const { logout } = useAuth();
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -68,7 +89,15 @@ export default function ProfileScreen() {
           user.posts.map((post) => (
             <View key={post.id} style={styles.postCard}>
               <Text style={styles.postUser}>@{user.name}</Text>
-              <Text style={styles.postText}>Post {post.id}</Text>
+              <Text style={styles.postTime}>{timeAgo(post.createdAt)}</Text>
+              <Text style={styles.postText}>{post.body}</Text>
+              {post.image && (
+                <Image
+                  style={styles.postImage}
+                  source={{ uri: post.image }}
+                  resizeMode="cover"
+                />
+              )}
             </View>
           ))
         ) : (

@@ -41,7 +41,9 @@ const styles = StyleSheet.create({
 
   statsContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 20,
     width: "100%",
     marginTop: 20,
   },
@@ -137,6 +139,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#333",
     marginBottom: 10,
+    marginTop: 10,
   },
 
   postActions: {
@@ -144,7 +147,14 @@ const styles = StyleSheet.create({
     gap: 18,
     marginTop: 4,
   },
-
+  postImage: {
+    width: "100%",
+    height: 400,
+    borderRadius: 10,
+    marginBottom: 30,
+    marginTop: 15,
+    resizeMode: "cover",
+  },
   postActionText: {
     fontSize: 14,
     fontWeight: "600",
