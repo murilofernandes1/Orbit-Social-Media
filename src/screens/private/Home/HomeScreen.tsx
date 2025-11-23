@@ -23,7 +23,6 @@ export default function HomeScreen() {
       try {
         const response = await api.get("/post");
         setPosts(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }

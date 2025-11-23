@@ -2,12 +2,14 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#DCE0D9",
-    paddingHorizontal: 24,
+    paddingHorizontal: 10,
     paddingTop: 20,
+    paddingBottom: 90,
   },
-
+  feed: {
+    marginTop: 10,
+  },
   sectionTitle: {
     color: "#04471C",
     fontSize: 18,
@@ -18,24 +20,48 @@ const styles = StyleSheet.create({
   postCard: {
     backgroundColor: "#FFFFFF",
     borderRadius: 12,
-    paddingVertical: 18,
-    paddingHorizontal: 14,
+    padding: 18,
     marginBottom: 16,
-    borderWidth: 1,
-    borderColor: "#B8C0B4",
+    borderLeftWidth: 4,
+    borderLeftColor: "#04471C",
   },
 
-  username: {
-    fontSize: 14,
+  postUser: {
+    fontSize: 15,
     fontWeight: "700",
     color: "#04471C",
-    marginBottom: 6,
+    marginBottom: 4,
+  },
+
+  postTime: {
+    fontSize: 12,
+    color: "#666",
+    marginBottom: 10,
   },
 
   postText: {
     fontSize: 15,
-    color: "#1A1A1A",
-    lineHeight: 20,
+    color: "#222",
+    marginBottom: 12,
+  },
+
+  postImage: {
+    width: "100%",
+    height: 400,
+    borderRadius: 10,
+    marginBottom: 30,
+    marginTop: 15,
+  },
+
+  postActions: {
+    flexDirection: "row",
+    gap: 20,
+  },
+
+  postActionText: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#04471C",
   },
 });
 
