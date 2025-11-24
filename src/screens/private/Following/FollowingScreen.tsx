@@ -21,7 +21,6 @@ export default function FollowingScreen() {
     async function loadPosts() {
       const response = await api.get("/post/following");
       setPosts(response.data);
-      console.log(response.data);
     }
     loadPosts();
   }, []);
