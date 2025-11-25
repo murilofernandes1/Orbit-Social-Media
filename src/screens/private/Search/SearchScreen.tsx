@@ -21,12 +21,13 @@ export default function SearchScreen() {
   async function handleUsers() {
     try {
       if (!name) {
-        return setSearchError(true);
+        setUsers([]);
+        setSearchError(true);
+        return;
       }
 
       setSearchError(false);
       const response = await api.get(`/search/user?name=${name}`);
-      console.log(response.data);
       setUsers(response.data);
       if (response.data.length === 0) {
         setNotFound(true);
