@@ -15,6 +15,8 @@ interface UserProps {
   name: string | null;
   id: string;
   posts: PostProps[] | null;
+  followers: FollowerProps[];
+  following: FollowingProps[];
 }
 interface PostProps {
   id: string;
@@ -22,7 +24,19 @@ interface PostProps {
   image: string | null;
   createdAt: string;
 }
+interface FollowerProps {
+  id: string;
+  followerId: string;
+  followedId: string;
+}
+interface FollowingProps {
+  id: string;
+  followerId?: string;
+  followedId: string;
+}
 export default function UserProfiles() {
+  const { userId } = useAuth();
+  const [follow, setFollow] = useState<boolean>(false);
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [user, setUser] = useState<UserProps>();
   const route = useRoute<UserProfilesRouteProp>();
@@ -31,14 +45,25 @@ export default function UserProfiles() {
     async function loadUser() {
       try {
         const response = await api.get(`/search/profile/${id}`);
-        console.log(response.data);
-        setUser(response.data);
+        const userData = response.data;
+
+        setUser(userData);
+
+        if (userId) {
+          const isFollowing = userData.followers.some(
+            (f: FollowerProps) => f.followerId === userId
+          );
+          setFollow(isFollowing);
+        }
+        console.log("userId atual:", userId);
+        console.log("followers recebidos:", userData.followers);
       } catch (error) {
         console.log(error);
       }
     }
+
     loadUser();
-  }, []);
+  }, [userId, id]);
 
   function timeAgo(dateString: string) {
     const now = Date.now();
@@ -56,6 +81,49 @@ export default function UserProfiles() {
     if (days === 1) return "ontem";
     return `há ${days} dias`;
   }
+  async function handleFollow() {
+    try {
+      const response = await api.post(`/follow/${id}`, {
+        data: {
+          followerId: userId,
+          followedId: id,
+        },
+      });
+
+      setFollow((prevFollow) => {
+        const nextFollow = !prevFollow;
+
+        setUser((prevUser) => {
+          if (!prevUser) return prevUser;
+
+          const prevFollowers = prevUser.followers ?? [];
+
+          if (nextFollow) {
+            return {
+              ...prevUser,
+              followers: [
+                ...prevFollowers,
+                {
+                  id: `local-${userId}`,
+                  followerId: userId,
+                  followedId: id,
+                } as FollowerProps,
+              ],
+            };
+          } else {
+            return {
+              ...prevUser,
+              followers: prevFollowers.filter((f) => f.followerId !== userId),
+            };
+          }
+        });
+
+        return nextFollow;
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -72,23 +140,29 @@ export default function UserProfiles() {
 
         <View style={styles.statsContainer}>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>0</Text>
+            <Text style={styles.statNumber}>{user?.posts?.length}</Text>
             <Text style={styles.statLabel}>Posts</Text>
           </View>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>0</Text>
+            <Text style={styles.statNumber}>{user?.followers?.length}</Text>
             <Text style={styles.statLabel}>Seguidores</Text>
           </View>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>0</Text>
+            <Text style={styles.statNumber}>{user?.following?.length}</Text>
             <Text style={styles.statLabel}>Seguindo</Text>
           </View>
         </View>
 
         <View style={styles.buttonsRow}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Seguir</Text>
-          </TouchableOpacity>
+          {follow ? (
+            <TouchableOpacity onPress={handleFollow} style={styles.button}>
+              <Text style={styles.buttonText}>Deixar de seguir</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={handleFollow} style={styles.button}>
+              <Text style={styles.buttonText}>Seguir</Text>
+            </TouchableOpacity>
+          )}
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>Compartilhar</Text>
           </TouchableOpacity>

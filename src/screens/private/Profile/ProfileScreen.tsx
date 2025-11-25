@@ -9,12 +9,22 @@ interface UserProps {
   name: string | null;
   id: string;
   posts: PostProps[] | null;
+  followers: FollowerProps[];
+  following: FollowingProps[];
 }
 interface PostProps {
   id: string;
   body: string;
   image: string | null;
   createdAt: string;
+}
+interface FollowerProps {
+  id: string;
+  followerId: string;
+}
+interface FollowingProps {
+  id: string;
+  followedId: string;
 }
 export default function ProfileScreen() {
   const [user, setUser] = useState<UserProps>();
@@ -58,15 +68,15 @@ export default function ProfileScreen() {
 
         <View style={styles.statsContainer}>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>0</Text>
+            <Text style={styles.statNumber}>{user?.posts?.length}</Text>
             <Text style={styles.statLabel}>Posts</Text>
           </View>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>0</Text>
+            <Text style={styles.statNumber}>{user?.followers.length}</Text>
             <Text style={styles.statLabel}>Seguidores</Text>
           </View>
           <View style={styles.stat}>
-            <Text style={styles.statNumber}>0</Text>
+            <Text style={styles.statNumber}>{user?.following.length}</Text>
             <Text style={styles.statLabel}>Seguindo</Text>
           </View>
         </View>
