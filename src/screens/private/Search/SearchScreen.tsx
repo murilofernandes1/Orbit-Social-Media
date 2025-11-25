@@ -5,6 +5,7 @@ import { useState } from "react";
 import { MagnifyingGlassIcon } from "phosphor-react-native";
 import api from "../../../services/api";
 import styles from "./styles";
+import { useAuth } from "../../../hooks/useAuth";
 
 type UsersProps = {
   name: string;
@@ -15,9 +16,15 @@ export default function SearchScreen() {
   const [name, setName] = useState("");
   const [users, setUsers] = useState<UsersProps[]>([]);
   const [notFound, setNotFound] = useState(false);
-
+  const [searchError, setSearchError] = useState(false);
+  const { userId } = useAuth();
   async function handleUsers() {
     try {
+      if (!name) {
+        return setSearchError(true);
+      }
+
+      setSearchError(false);
       const response = await api.get(`/search/user?name=${name}`);
       console.log(response.data);
       setUsers(response.data);
@@ -46,6 +53,7 @@ export default function SearchScreen() {
             value={name}
             onChangeText={setName}
           />
+
           <TouchableOpacity onPress={handleUsers}>
             <MagnifyingGlassIcon
               size={40}
@@ -54,6 +62,9 @@ export default function SearchScreen() {
             />
           </TouchableOpacity>
         </View>
+        {searchError && (
+          <Text style={{ color: "red" }}>O campo não pode estar vazio!</Text>
+        )}
         <View style={styles.resultArea}>
           {notFound === true && (
             <Text style={styles.emptyText}>Nenhum usuário encontrado</Text>
@@ -62,12 +73,18 @@ export default function SearchScreen() {
           {users.map((u) => (
             <TouchableOpacity
               key={u.id}
-              onPress={() =>
-                navigation.navigate("SearchStack", {
-                  screen: "UserProfiles",
-                  params: { id: u.id },
-                })
-              }
+              onPress={() => {
+                if (u.id === userId) {
+                  navigation.navigate("ProfileStack", {
+                    screen: "ProfileScreen",
+                  });
+                } else {
+                  navigation.navigate("SearchStack", {
+                    screen: "UserProfiles",
+                    params: { id: u.id },
+                  });
+                }
+              }}
             >
               <View style={styles.userCard}>
                 {u.image ? (

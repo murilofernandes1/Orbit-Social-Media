@@ -42,6 +42,9 @@ export default function UserProfiles() {
   const route = useRoute<UserProfilesRouteProp>();
   const { id } = route.params;
   useEffect(() => {
+    if (id === userId) {
+      navigation.navigate("ProfileStack", { screen: "ProfileScreen" });
+    }
     async function loadUser() {
       try {
         const response = await api.get(`/search/profile/${id}`);
@@ -55,8 +58,6 @@ export default function UserProfiles() {
           );
           setFollow(isFollowing);
         }
-        console.log("userId atual:", userId);
-        console.log("followers recebidos:", userData.followers);
       } catch (error) {
         console.log(error);
       }
