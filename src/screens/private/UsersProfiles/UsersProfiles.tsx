@@ -125,7 +125,49 @@ export default function UserProfiles() {
       console.log(error);
     }
   }
+  async function handleUnfollow() {
+    try {
+      await api.delete(`/follow/${id}`, {
+        data: {
+          followerId: userId,
+          followedId: id,
+        },
+      });
 
+      setFollow((prevFollow) => {
+        const nextFollow = !prevFollow;
+
+        setUser((prevUser) => {
+          if (!prevUser) return prevUser;
+
+          const prevFollowers = prevUser.followers ?? [];
+
+          if (nextFollow) {
+            return {
+              ...prevUser,
+              followers: [
+                ...prevFollowers,
+                {
+                  id: `local-${userId}`,
+                  followerId: userId,
+                  followedId: id,
+                } as FollowerProps,
+              ],
+            };
+          } else {
+            return {
+              ...prevUser,
+              followers: prevFollowers.filter((f) => f.followerId !== userId),
+            };
+          }
+        });
+
+        return nextFollow;
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.userHeader}>
@@ -156,7 +198,7 @@ export default function UserProfiles() {
 
         <View style={styles.buttonsRow}>
           {follow ? (
-            <TouchableOpacity onPress={handleFollow} style={styles.button}>
+            <TouchableOpacity onPress={handleUnfollow} style={styles.button}>
               <Text style={styles.buttonText}>Deixar de seguir</Text>
             </TouchableOpacity>
           ) : (
