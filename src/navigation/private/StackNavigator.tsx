@@ -5,8 +5,6 @@ import HomeScreen from "../../screens/private/Home/HomeScreen";
 import TabNavigator from "./TabNavigator";
 import HomeStack from "./stacks/HomeStack";
 export type RootStackParamList = {
-  HomeStack: undefined;
-
   TabNavigator: undefined;
 };
 

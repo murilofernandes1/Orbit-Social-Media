@@ -1,4 +1,6 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { MagnifyingGlassIcon } from "phosphor-react-native";
 import api from "../../../services/api";
@@ -7,6 +9,7 @@ import styles from "./styles";
 type UsersProps = {
   name: string;
   image: string | null;
+  id: string;
 };
 export default function SearchScreen() {
   const [name, setName] = useState("");
@@ -27,7 +30,7 @@ export default function SearchScreen() {
       console.log(error);
     }
   }
-
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   return (
     <>
       <View style={styles.container}>
@@ -35,6 +38,8 @@ export default function SearchScreen() {
 
         <View style={styles.searchContainer}>
           <TextInput
+            onSubmitEditing={handleUsers}
+            returnKeyType="search"
             placeholder="Pesquisar..."
             placeholderTextColor="#6B6B6B"
             style={styles.searchInput}
@@ -54,15 +59,25 @@ export default function SearchScreen() {
             <Text style={styles.emptyText}>Nenhum usuário encontrado</Text>
           )}
 
-          {users.map((item: any, index) => (
-            <View key={index} style={styles.userCard}>
-              {item.image ? (
-                <Text>Tem foto</Text>
-              ) : (
-                <View style={styles.userPic} />
-              )}
-              <Text style={styles.userName}>@{item.name}</Text>
-            </View>
+          {users.map((u) => (
+            <TouchableOpacity
+              key={u.id}
+              onPress={() =>
+                navigation.navigate("SearchStack", {
+                  screen: "UserProfiles",
+                  params: { id: u.id },
+                })
+              }
+            >
+              <View style={styles.userCard}>
+                {u.image ? (
+                  <Image source={{ uri: u.image }} />
+                ) : (
+                  <View style={styles.userPic} />
+                )}
+                <Text style={styles.userName}>@{u.name}</Text>
+              </View>
+            </TouchableOpacity>
           ))}
         </View>
       </View>
